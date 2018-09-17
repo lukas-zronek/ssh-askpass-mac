@@ -15,6 +15,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
+        for window in NSApp.windows {
+            window.orderFrontRegardless()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
