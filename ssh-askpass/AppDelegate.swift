@@ -20,6 +20,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             window.level = .modalPanel
             window.orderFrontRegardless()
         }
+        
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
