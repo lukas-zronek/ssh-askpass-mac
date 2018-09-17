@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         
         for window in NSApp.windows {
+            window.level = .modalPanel
             window.orderFrontRegardless()
         }
     }
