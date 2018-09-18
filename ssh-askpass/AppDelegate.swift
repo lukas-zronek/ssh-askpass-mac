@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
-        for window in NSApp.windows {
+        if let window = NSApp.windows.first {
             window.level = .modalPanel
             window.orderFrontRegardless()
         }
