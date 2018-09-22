@@ -63,11 +63,19 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = "&quot;Enter passphrase for /Users/lukas/.ssh/id_rsa: &quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "&quot;Enter passphrase for /Users/lukas/.ssh/id_rsa (will confirm each use): &quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;Bad passphrase, try again for /Users/lukas/.ssh/id_rsa: &quot;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&quot;Enter passphrase for /Users/lukas/.ssh/id_rsa: &quot;"
+            argument = "&quot;Bad passphrase, try again for /Users/lukas/.ssh/id_rsa (will confirm each use): &quot;"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument

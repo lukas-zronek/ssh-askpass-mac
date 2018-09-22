@@ -12,12 +12,18 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var infoTextField: NSTextField!
     @IBOutlet weak var passwordTextField: NSSecureTextField!
+    @IBOutlet weak var keychainCheckBox: NSButtonCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if CommandLine.arguments.count > 1 {
-            infoTextField.stringValue = CommandLine.arguments[1]
+        
+        if !SSHKeychain.message.isEmpty {
+            infoTextField.stringValue = SSHKeychain.message
+        }
+        
+        if SSHKeychain.keypath.isEmpty {
+            keychainCheckBox.state = NSControl.StateValue.off
+            keychainCheckBox.isEnabled = false
         }
     }
 
@@ -26,6 +32,17 @@ class ViewController: NSViewController {
     }
     
     @IBAction func ok(_ sender: Any) {
+        if !SSHKeychain.keypath.isEmpty && keychainCheckBox.state == NSControl.StateValue.on {
+            let status = SSHKeychain.add(keypath: SSHKeychain.keypath, password: passwordTextField.stringValue)
+            if status != errSecSuccess {
+                let alert = NSAlert()
+                alert.messageText = "Keychain Error"
+                alert.informativeText = SecCopyErrorMessageString(status, nil)! as String
+                alert.icon = NSImage(named: NSImage.cautionName)
+                alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
+                return
+            }
+        }
         print(passwordTextField.stringValue)
         exit(0)
     }
