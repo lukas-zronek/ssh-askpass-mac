@@ -18,6 +18,7 @@ class SSHKeychain {
     }
     static var message = String()
     static var keypath = String()
+    static var isConfirmation = false
     
     class func get(keypath: String) -> String? {
         var result: AnyObject?

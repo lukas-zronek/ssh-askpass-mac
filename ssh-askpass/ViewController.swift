@@ -21,7 +21,12 @@ class ViewController: NSViewController {
             infoTextField.stringValue = SSHKeychain.message
         }
         
-        if SSHKeychain.keypath.isEmpty {
+        if SSHKeychain.isConfirmation {
+            passwordTextField.isHidden = true
+            if let controlView = keychainCheckBox.controlView {
+                controlView.isHidden = true
+            }
+        } else if SSHKeychain.keypath.isEmpty {
             keychainCheckBox.state = NSControl.StateValue.off
             keychainCheckBox.isEnabled = false
         }
