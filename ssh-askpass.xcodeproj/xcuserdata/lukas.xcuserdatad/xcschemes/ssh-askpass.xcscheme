@@ -82,6 +82,10 @@
             argument = "&quot;Allow use of key Github?&#10;Key fingerprint SHA256:YioV/NVME8jGXhBYcSVcd6zFSR5pUT4abndVV9n1ctQ.&quot;"
             isEnabled = "NO">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Add key /Users/lukas/.ssh/id_ed25519 (Github) to agent?"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>

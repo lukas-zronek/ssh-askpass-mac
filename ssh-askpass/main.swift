@@ -20,7 +20,7 @@ if CommandLine.arguments.count > 1  {
         }
     } else if let keypath = SSHKeychain.message.parseKeyPath(pattern: "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $") {
         SSHKeychain.keypath = keypath
-    } else if SSHKeychain.message.parseKeyPath(pattern: "^Allow use of key (.*?)") != nil {
+    } else if SSHKeychain.message.parseKeyPath(pattern: "^Allow use of key (.*?)") != nil || SSHKeychain.message.parseKeyPath(pattern: "^Add key (.*) \\(.*\\) to agent\\?$") != nil {
         SSHKeychain.isConfirmation = true
     }
 }
