@@ -83,7 +83,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Add key /Users/lukas/.ssh/id_ed25519 (Github) to agent?"
+            argument = "&quot;Add key /Users/lukas/.ssh/id_ed25519 (Github) to agent?&quot;"
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
