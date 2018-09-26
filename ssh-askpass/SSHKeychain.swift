@@ -33,7 +33,7 @@ class SSHKeychain {
         } else if let keypath = message.parseKeyPath(pattern: "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $") {
             shared.keypath = keypath
             shared.failedAttempt = true
-        } else if message.parseKeyPath(pattern: "^Allow use of key (.*?)") != nil || message.parseKeyPath(pattern: "^Add key (.*) \\(.*\\) to agent\\?$") != nil {
+        } else if message.parseKeyPath(pattern: "^Allow use of key (.*)\\?") != nil || message.parseKeyPath(pattern: "^Add key (.*) \\(.*\\) to agent\\?$") != nil {
             shared.isConfirmation = true
         }
     }
