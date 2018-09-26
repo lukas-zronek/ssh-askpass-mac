@@ -18,6 +18,20 @@ class SSHKeychain {
         static let Service = "SSH"
         static let Accessible = kSecAttrAccessibleWhenUnlocked
     }
+    
+    enum PatternType {
+        case prompt
+        case failedAttempt
+        case confirmation
+    }
+    
+    static let patterns: DictionaryLiteral = [
+        "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $": PatternType.prompt,
+        "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $": PatternType.failedAttempt,
+        "^Allow use of key (.*)\\?": PatternType.confirmation,
+        "^Add key (.*) \\(.*\\) to agent\\?$": PatternType.confirmation
+    ]
+    
     var message = String()
     var keypath = String()
     var isConfirmation = false
@@ -28,13 +42,19 @@ class SSHKeychain {
     class func setup(message: String) {
         shared.message = message
         
-        if let keypath = message.parseKeyPath(pattern: "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $") {
-            shared.keypath = keypath
-        } else if let keypath = message.parseKeyPath(pattern: "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $") {
-            shared.keypath = keypath
-            shared.failedAttempt = true
-        } else if message.parseKeyPath(pattern: "^Allow use of key (.*)\\?") != nil || message.parseKeyPath(pattern: "^Add key (.*) \\(.*\\) to agent\\?$") != nil {
-            shared.isConfirmation = true
+        for (pattern, type) in patterns {
+            if let keypath = message.parseKeyPath(pattern: pattern) {
+                switch type {
+                case PatternType.prompt:
+                    shared.keypath = keypath
+                case PatternType.failedAttempt:
+                    shared.keypath = keypath
+                    shared.failedAttempt = true
+                case PatternType.confirmation:
+                    shared.isConfirmation = true
+                }
+                break
+            }
         }
     }
     
