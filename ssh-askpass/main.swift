@@ -10,7 +10,7 @@ import Cocoa
 
 SSHKeychain.setup(message: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "")
 
-if let password = SSHKeychain.shared.get() {
+if !SSHKeychain.shared.keypath.isEmpty, let password = SSHKeychain.shared.get() {
     print(password)
     exit(0)
 }
