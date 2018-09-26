@@ -14,19 +14,21 @@ class ViewController: NSViewController {
     @IBOutlet weak var passwordTextField: NSSecureTextField!
     @IBOutlet weak var keychainCheckBox: NSButtonCell!
     
+    let sshKeychain = SSHKeychain.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !SSHKeychain.message.isEmpty {
-            infoTextField.stringValue = SSHKeychain.message
+        if !sshKeychain.message.isEmpty {
+            infoTextField.stringValue = sshKeychain.message
         }
         
-        if SSHKeychain.isConfirmation {
+        if sshKeychain.isConfirmation {
             passwordTextField.isHidden = true
             if let controlView = keychainCheckBox.controlView {
                 controlView.isHidden = true
             }
-        } else if SSHKeychain.keypath.isEmpty {
+        } else if sshKeychain.keypath.isEmpty {
             keychainCheckBox.state = NSControl.StateValue.off
             keychainCheckBox.isEnabled = false
         }
@@ -37,8 +39,8 @@ class ViewController: NSViewController {
     }
     
     @IBAction func ok(_ sender: Any) {
-        if !SSHKeychain.keypath.isEmpty && keychainCheckBox.state == NSControl.StateValue.on {
-            let status = SSHKeychain.add(keypath: SSHKeychain.keypath, password: passwordTextField.stringValue)
+        if !sshKeychain.keypath.isEmpty && keychainCheckBox.state == NSControl.StateValue.on {
+            let status = sshKeychain.add(password: passwordTextField.stringValue)
             if status != errSecSuccess {
                 let alert = NSAlert()
                 alert.messageText = "Keychain Error"

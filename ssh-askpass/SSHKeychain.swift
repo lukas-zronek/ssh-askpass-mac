@@ -9,6 +9,8 @@
 import Foundation
 
 class SSHKeychain {
+    static let shared = SSHKeychain()
+    
     struct DefaultValues {
         static let itemClass = kSecClassGenericPassword
         static let LabelPrefix = "SSH: "
@@ -16,11 +18,25 @@ class SSHKeychain {
         static let Service = "SSH"
         static let Accessible = kSecAttrAccessibleWhenUnlocked
     }
-    static var message = String()
-    static var keypath = String()
-    static var isConfirmation = false
+    var message = String()
+    var keypath = String()
+    var isConfirmation = false
     
-    class func get(keypath: String) -> String? {
+    private init() {}
+    
+    class func setup(message: String) {
+        shared.message = message
+        
+        if let keypath = message.parseKeyPath(pattern: "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $") {
+            shared.keypath = keypath
+        } else if let keypath = message.parseKeyPath(pattern: "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $") {
+            shared.keypath = keypath
+        } else if message.parseKeyPath(pattern: "^Allow use of key (.*?)") != nil || message.parseKeyPath(pattern: "^Add key (.*) \\(.*\\) to agent\\?$") != nil {
+            shared.isConfirmation = true
+        }
+    }
+    
+    func get() -> String? {
         var result: AnyObject?
         var data: Data?
         let query: [CFString: Any] = [
@@ -41,8 +57,8 @@ class SSHKeychain {
         return String(data: data!, encoding: .utf8)!
     }
     
-    class func add(keypath: String, password: String) -> OSStatus {
-        var status = SSHKeychain.delete(keypath: keypath)
+    func add(password: String) -> OSStatus {
+        var status = delete()
         
         switch status {
         case errSecSuccess, errSecItemNotFound:
@@ -66,7 +82,7 @@ class SSHKeychain {
         return status
     }
     
-    class func delete(keypath: String) -> OSStatus {
+    func delete() -> OSStatus {
         let query: [CFString: Any] = [
             kSecClass: DefaultValues.itemClass,
             kSecAttrAccount: keypath

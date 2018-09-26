@@ -8,21 +8,11 @@
 
 import Cocoa
 
-if CommandLine.arguments.count > 1  {
-    SSHKeychain.message = CommandLine.arguments[1]
-    
-    if let keypath = SSHKeychain.message.parseKeyPath(pattern: "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $") {
-        if let password = SSHKeychain.get(keypath: keypath) {
-            print(password)
-            exit(0)
-        } else {
-            SSHKeychain.keypath = keypath
-        }
-    } else if let keypath = SSHKeychain.message.parseKeyPath(pattern: "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $") {
-        SSHKeychain.keypath = keypath
-    } else if SSHKeychain.message.parseKeyPath(pattern: "^Allow use of key (.*?)") != nil || SSHKeychain.message.parseKeyPath(pattern: "^Add key (.*) \\(.*\\) to agent\\?$") != nil {
-        SSHKeychain.isConfirmation = true
-    }
+SSHKeychain.setup(message: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "")
+
+if let password = SSHKeychain.shared.get() {
+    print(password)
+    exit(0)
 }
 
 _ = NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv)
