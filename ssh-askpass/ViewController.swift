@@ -45,7 +45,12 @@ class ViewController: NSViewController {
                 let alert = NSAlert()
                 alert.messageText = "Keychain Error"
                 alert.informativeText = SecCopyErrorMessageString(status, nil)! as String
-                alert.icon = NSImage(named: NSImage.cautionName)
+                #if swift(>=4.2)
+                let cautionName = NSImage.cautionName
+                #else
+                let cautionName = NSImage.Name.caution
+                #endif
+                alert.icon = NSImage(named: cautionName)
                 alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
                 return
             }
