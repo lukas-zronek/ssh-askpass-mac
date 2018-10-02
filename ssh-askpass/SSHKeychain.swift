@@ -88,6 +88,13 @@ class SSHKeychain {
         default:
             return status
         }
+
+        // no apps are trusted to access the keychain item
+        var accessRef: SecAccess?
+        status = SecAccessCreate("\(DefaultValues.LabelPrefix)\(keypath)" as CFString, [] as CFArray, &accessRef)
+        if status != errSecSuccess {
+            return status
+        }
         
         let query: [CFString: Any] = [
             kSecClass: DefaultValues.itemClass,
@@ -95,6 +102,7 @@ class SSHKeychain {
             kSecAttrDescription: DefaultValues.Description,
             kSecAttrService: DefaultValues.Service,
             kSecAttrAccessible: DefaultValues.Accessible,
+            kSecAttrAccess: accessRef!,
             kSecAttrAccount: keypath,
             kSecValueData: password
         ]
