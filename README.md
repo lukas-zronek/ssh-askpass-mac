@@ -14,7 +14,7 @@ ssh-askpass-mac was inspired by [ksshaskpass](https://github.com/KDE/ksshaskpass
 
 **Install Xcode**
 
-You can obtain the latest version of Xcode from the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835)
+Building requires Xcode 9 or newer. You can obtain the latest version of Xcode from the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835)
 
 **Download**
 
