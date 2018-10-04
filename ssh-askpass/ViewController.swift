@@ -49,19 +49,23 @@ class ViewController: NSViewController {
                         if status == errSecSuccess {
                             self.ok(self)
                         } else {
-                            self.error(messageText: "Keychain Error", informativeText: SecCopyErrorMessageString(status, nil)! as String)
+                            self.keychainError(status: status)
                             return
                         }
                     }
                 })
                 return
             } else if status != errSecSuccess {
-                error(messageText: "Keychain Error", informativeText: SecCopyErrorMessageString(status, nil)! as String)
+                keychainError(status: status)
                 return
             }
         }
         print(passwordTextField.stringValue)
         exit(0)
+    }
+    
+    func keychainError(status: OSStatus) {
+        error(messageText: "Keychain Error", informativeText: SecCopyErrorMessageString(status, nil)! as String)
     }
     
     func error(messageText: String, informativeText: String) {
