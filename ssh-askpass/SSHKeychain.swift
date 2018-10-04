@@ -80,14 +80,7 @@ class SSHKeychain {
     }
     
     func add(password: String) -> OSStatus {
-        var status = delete()
-        
-        switch status {
-        case errSecSuccess, errSecItemNotFound:
-                break
-        default:
-            return status
-        }
+        var status: OSStatus
 
         let label = "\(DefaultValues.LabelPrefix)\(keypath)"
         

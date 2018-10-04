@@ -41,21 +41,54 @@ class ViewController: NSViewController {
     @IBAction func ok(_ sender: Any) {
         if !sshKeychain.keypath.isEmpty && keychainCheckBox.state == NSControl.StateValue.on {
             let status = sshKeychain.add(password: passwordTextField.stringValue)
-            if status != errSecSuccess {
-                let alert = NSAlert()
-                alert.messageText = "Keychain Error"
-                alert.informativeText = SecCopyErrorMessageString(status, nil)! as String
-                #if swift(>=4.2)
-                let cautionName = NSImage.cautionName
-                #else
-                let cautionName = NSImage.Name.caution
-                #endif
-                alert.icon = NSImage(named: cautionName)
-                alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
+
+            if status == errSecDuplicateItem {
+                ask(messageText: "Warning", informativeText: "A passphrase for \"\(sshKeychain.keypath)\" already exists in the keychain.\nDo you want to replace it?", okButtonTitle: "Replace", completionHandler: { (result) in
+                    if result == .alertFirstButtonReturn {
+                        let status = self.sshKeychain.delete()
+                        if status == errSecSuccess {
+                            self.ok(self)
+                        } else {
+                            self.error(messageText: "Keychain Error", informativeText: SecCopyErrorMessageString(status, nil)! as String)
+                            return
+                        }
+                    }
+                })
+                return
+            } else if status != errSecSuccess {
+                error(messageText: "Keychain Error", informativeText: SecCopyErrorMessageString(status, nil)! as String)
                 return
             }
         }
         print(passwordTextField.stringValue)
         exit(0)
+    }
+    
+    func error(messageText: String, informativeText: String) {
+        let alert = NSAlert()
+        alert.messageText = messageText
+        alert.informativeText = informativeText
+        #if swift(>=4.2)
+        let cautionName = NSImage.cautionName
+        #else
+        let cautionName = NSImage.Name.caution
+        #endif
+        alert.icon = NSImage(named: cautionName)
+        alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
+    }
+    
+    func ask(messageText: String, informativeText: String, okButtonTitle: String, completionHandler: ((NSApplication.ModalResponse) -> Void)? = nil) {
+        let alert = NSAlert()
+        alert.messageText = messageText
+        alert.informativeText = informativeText
+        #if swift(>=4.2)
+        let cautionName = NSImage.cautionName
+        #else
+        let cautionName = NSImage.Name.caution
+        #endif
+        alert.icon = NSImage(named: cautionName)
+        _ = alert.addButton(withTitle: okButtonTitle)
+        _ = alert.addButton(withTitle: "Cancel")
+        alert.beginSheetModal(for: self.view.window!, completionHandler: completionHandler)
     }
 }
