@@ -19,7 +19,7 @@ extension String {
                 return nil
         }
             
-        if let match = regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.count)), match.numberOfRanges >= 2 {
+        if let match = regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count)), match.numberOfRanges >= 2 {
             return String(self[Range(match.range(at: 1), in: self)!])
         }
         return nil
