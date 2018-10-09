@@ -11,14 +11,10 @@ import Foundation
 extension String {
     
     func parseKeyPath(pattern: String) -> String? {
-        let regex: NSRegularExpression
-        
-        do {
-            regex = try NSRegularExpression(pattern: pattern, options: [])
-        } catch {
-                return nil
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
+            return nil
         }
-            
+        
         if let match = regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count)), match.numberOfRanges >= 2 {
             return String(self[Range(match.range(at: 1), in: self)!])
         }
