@@ -60,7 +60,6 @@ class SSHKeychain {
     
     func get() -> String? {
         var result: AnyObject?
-        var data: Data?
         let query: [CFString: Any] = [
             kSecClass: DefaultValues.itemClass,
             kSecAttrAccount: keypath,
@@ -69,14 +68,10 @@ class SSHKeychain {
         ]
         
         let status = SecItemCopyMatching(query as CFDictionary, &result)
-        
-        if status == noErr {
-            data = result as? Data
-        } else {
+        guard status == noErr, let data = result as? Data, let password = String(data: data, encoding: .utf8) else {
             return nil
         }
-        
-        return String(data: data!, encoding: .utf8)!
+        return password
     }
     
     func add(password: String) -> OSStatus {
