@@ -43,16 +43,17 @@ cp -R build/Release/ssh-askpass.app /Applications
 Add the following lines to your _.bash_profile_ in your home directory:
 
 ```
-# ssh-askpass-mac
+ssh_askpass_mac=/Applications/ssh-askpass.app/Contents/MacOS/ssh-askpass
+export SSH_ASKPASS=$ssh_askpass_mac
 if [ -z ${DISPLAY+x} ]
 then
         export DISPLAY=
         launchctl setenv DISPLAY ""
 fi
-if [ -z ${SSH_ASKPASS+x} ]
+ssh_askpass_env=$(launchctl getenv SSH_ASKPASS)
+if [ "$ssh_askpass_env" != "$ssh_askpass_mac" ]
 then
-        export SSH_ASKPASS=/Applications/ssh-askpass.app/Contents/MacOS/ssh-askpass
-        launchctl setenv SSH_ASKPASS "$SSH_ASKPASS" && launchctl stop com.openssh.ssh-agent
+        launchctl setenv SSH_ASKPASS "$ssh_askpass_mac" && launchctl stop com.openssh.ssh-agent
 fi
 ssh-add()
 {
