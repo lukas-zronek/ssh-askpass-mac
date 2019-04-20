@@ -25,7 +25,7 @@ class SSHKeychain {
         case confirmation
     }
     
-    static let patterns: DictionaryLiteral = [
+    static let patterns: KeyValuePairs = [
         "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $": PatternType.prompt,
         "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $": PatternType.failedAttempt,
         "^Allow use of key (.*)\\?": PatternType.confirmation,
