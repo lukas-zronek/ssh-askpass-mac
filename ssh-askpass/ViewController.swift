@@ -31,6 +31,16 @@ class ViewController: NSViewController {
         } else if sshKeychain.keypath.isEmpty {
             keychainCheckBox.state = NSControl.StateValue.off
             keychainCheckBox.isEnabled = false
+        } else {
+            if let obj = UserDefaults.standard.object(forKey: "useKeychain") {
+                if let useKeychain = obj as? Bool {
+                    if (useKeychain) {
+                        keychainCheckBox.state = NSControl.StateValue.on
+                    } else {
+                        keychainCheckBox.state = NSControl.StateValue.off
+                    }
+                }
+            }
         }
     }
 
@@ -62,6 +72,14 @@ class ViewController: NSViewController {
         }
         print(passwordTextField.stringValue)
         exit(0)
+    }
+    
+    @IBAction func useKeychainChanged(_ sender: NSButtonCell) {
+        var useKeychain:Bool = false
+        if (sender.state == NSControl.StateValue.on) {
+            useKeychain = true
+        }
+        UserDefaults.standard.set(useKeychain, forKey: "useKeychain")
     }
     
     func keychainError(status: OSStatus) {

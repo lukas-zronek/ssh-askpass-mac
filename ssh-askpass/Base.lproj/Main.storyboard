@@ -748,6 +748,9 @@
                                                 <buttonCell key="cell" type="check" title="Remember passphrase in my keychain" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vTY-yF-QDM">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
+                                                    <connections>
+                                                        <action selector="useKeychainChanged:" target="XfG-lQ-9wD" id="AtP-Wi-Znm"/>
+                                                    </connections>
                                                 </buttonCell>
                                             </button>
                                             <stackView distribution="fill" orientation="vertical" alignment="trailing" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fHV-OC-gaY">
