@@ -61,6 +61,13 @@ ssh-add()
 }
 ```
 
+The setting "Remember passphrase in my keychain" is enabled by default. A change of the setting is retained.
+You can also disable the keychain with the following command:
+
+```
+defaults write at.zronek.lukas.ssh-askpass useKeychain -bool false
+```
+
 ## License
 
 ssh-askpass-mac is released under [BSD 2-Clause License](https://github.com/lukas-zronek/ssh-askpass-mac/blob/master/LICENSE).
