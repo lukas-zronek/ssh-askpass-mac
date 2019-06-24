@@ -1,6 +1,6 @@
 # ssh-askpass-mac
 
-ssh-askpass-mac is a graphical password prompt for OpenSSH on macOS, which can store the password in the keychain. It is executed by _ssh-add_ when adding encrypted private keys to the ssh-agent:
+ssh-askpass-mac is a graphical front-end for _ssh-add_ on macOS, which can store the password of a private key in the keychain. It is executed by _ssh-add_ when adding encrypted private keys to the ssh-agent:
 
 ![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/passphrase.png  "Screenshot of ssh-askpass-mac")
 
