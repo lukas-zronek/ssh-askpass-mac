@@ -4,7 +4,7 @@ ssh-askpass-mac is a graphical front-end for [ssh-add](https://man.openbsd.org/s
 
 ![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/passphrase.png  "Screenshot of ssh-askpass-mac")
 
-It can also be used as a confirmation dialog when accessing a key in the ssh-agent:
+It can also be used as a confirmation dialog when a stored key is accessed after adding the key with _ssh-add -c_ (recommended):
 
 ![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/confirmation.png  "Screenshot of ssh-askpass-mac")
 
