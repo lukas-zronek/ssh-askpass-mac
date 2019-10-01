@@ -10,6 +10,12 @@ It can also be used as a confirmation dialog when accessing a key in the ssh-age
 
 ssh-askpass-mac was inspired by [ksshaskpass](https://github.com/KDE/ksshaskpass) and should behave like the keychain support prior to macOS Sierra.
 
+## Security
+
+The passwords are stored in the login keychain by default, which is automatically unlocked when you log in. I recommend creating several keychains and enabling the auto-lock feature. After a password is saved in the login keychain, you can later move it to any other keychain using the keychain app. ssh-askpass-mac will fetch the password automatically from any keychain.
+
+The password is temporarily stored in the memory area of the ssh-askpass-mac app and with the Swift programming language it is not possible to ensure that the memory area is overwritten. A local attacker with administrator rights could read the memory and extract the password.
+
 ## Building and Installation
 
 **Install Xcode**
