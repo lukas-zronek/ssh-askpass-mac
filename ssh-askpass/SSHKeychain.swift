@@ -28,6 +28,7 @@
 import Foundation
 
 class SSHKeychain {
+    
     static let shared = SSHKeychain()
     
     struct DefaultValues {
