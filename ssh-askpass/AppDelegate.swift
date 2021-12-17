@@ -2,7 +2,7 @@
 // AppDelegate.swift
 // This file is part of ssh-askpass-mac
 //
-// Copyright (c) 2019, Lukas Zronek
+// Copyright (c) 2021, Lukas Zronek
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
@@ -34,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             window.level = .modalPanel
             window.orderFrontRegardless()
         }
-        
+        NSApp.setActivationPolicy(NSApplication.ActivationPolicy.accessory)
         NSApp.activate(ignoringOtherApps: true)
     }
 
