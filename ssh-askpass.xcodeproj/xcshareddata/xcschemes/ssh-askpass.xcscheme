@@ -50,6 +50,36 @@
             ReferencedContainer = "container:ssh-askpass.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = ""
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;Enter passphrase for .ssh/id_ed25519: &quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;Enter passphrase for .ssh/id_ed25519 (will confirm each use): &quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;Bad passphrase, try again for .ssh/id_ed25519: &quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;Bad passphrase, try again for .ssh/id_ed25519 (will confirm each use): &quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;Enter passphrase (empty for no passphrase): &quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;Enter same passphrase again: &quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
