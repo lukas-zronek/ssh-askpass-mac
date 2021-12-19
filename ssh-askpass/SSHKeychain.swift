@@ -2,7 +2,7 @@
 // SSHKeychain.swift
 // This file is part of ssh-askpass-mac
 //
-// Copyright (c) 2019, Lukas Zronek
+// Copyright (c) 2021, Lukas Zronek
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
@@ -39,46 +39,9 @@ class SSHKeychain {
         static let Accessible = kSecAttrAccessibleWhenUnlocked
     }
     
-    enum PatternType {
-        case prompt
-        case failedAttempt
-        case confirmation
-    }
-    
-    static let patterns: KeyValuePairs = [
-        "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $": PatternType.prompt,
-        "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $": PatternType.failedAttempt,
-        "^Allow use of key (.*)\\?": PatternType.confirmation,
-        "^Add key (.*) \\(.*\\) to agent\\?$": PatternType.confirmation
-    ]
-    
-    var message = String()
-    var keypath = String()
-    var isConfirmation = false
-    var failedAttempt = false
-    
     private init() {}
     
-    class func setup(message: String) {
-        shared.message = message
-        
-        for (pattern, type) in patterns {
-            if let keypath = message.parseKeyPath(pattern: pattern) {
-                switch type {
-                case PatternType.prompt:
-                    shared.keypath = keypath
-                case PatternType.failedAttempt:
-                    shared.keypath = keypath
-                    shared.failedAttempt = true
-                case PatternType.confirmation:
-                    shared.isConfirmation = true
-                }
-                break
-            }
-        }
-    }
-    
-    func get() -> String? {
+    func get(keypath: String) -> String? {
         var result: AnyObject?
         let query: [CFString: AnyObject] = [
             kSecClass: DefaultValues.itemClass,
@@ -94,7 +57,7 @@ class SSHKeychain {
         return password
     }
     
-    func add(password: String) -> OSStatus {
+    func add(keypath: String, password: String) -> OSStatus {
         var status: OSStatus
 
         let label = "\(DefaultValues.LabelPrefix)\(keypath)"
@@ -122,7 +85,7 @@ class SSHKeychain {
         return status
     }
     
-    func delete() -> OSStatus {
+    func delete(keypath: String) -> OSStatus {
         let query: [CFString: Any] = [
             kSecClass: DefaultValues.itemClass,
             kSecAttrAccount: keypath

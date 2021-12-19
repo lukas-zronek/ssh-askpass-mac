@@ -14,6 +14,7 @@
 		80CD09EE20D2A7410091E6DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CD09ED20D2A7410091E6DC /* ViewController.swift */; };
 		80CD09F020D2A7410091E6DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CD09EF20D2A7410091E6DC /* Assets.xcassets */; };
 		80CD09F320D2A7410091E6DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CD09F120D2A7410091E6DC /* Main.storyboard */; };
+		A159339D276F4F25004B0BEC /* SSHAskpass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159339C276F4F25004B0BEC /* SSHAskpass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		80CD09F220D2A7410091E6DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80CD09F420D2A7410091E6DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80CD09F520D2A7410091E6DC /* ssh_askpass.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ssh_askpass.entitlements; sourceTree = "<group>"; };
+		A159339C276F4F25004B0BEC /* SSHAskpass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHAskpass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				80CD09F420D2A7410091E6DC /* Info.plist */,
 				80CD09F520D2A7410091E6DC /* ssh_askpass.entitlements */,
 				80BBEF5921528CF50075528C /* SSHKeychain.swift */,
+				A159339C276F4F25004B0BEC /* SSHAskpass.swift */,
 				80BBEF5B2153CC980075528C /* String+ParseKeyPath.swift */,
 				80BBEF5F215642E00075528C /* main.swift */,
 			);
@@ -146,6 +149,7 @@
 				80CD09EE20D2A7410091E6DC /* ViewController.swift in Sources */,
 				80BBEF60215642E00075528C /* main.swift in Sources */,
 				80CD09EC20D2A7410091E6DC /* AppDelegate.swift in Sources */,
+				A159339D276F4F25004B0BEC /* SSHAskpass.swift in Sources */,
 				80BBEF5C2153CC980075528C /* String+ParseKeyPath.swift in Sources */,
 				80BBEF5A21528CF50075528C /* SSHKeychain.swift in Sources */,
 			);

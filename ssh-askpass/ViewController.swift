@@ -2,7 +2,7 @@
 // ViewController.swift
 // This file is part of ssh-askpass-mac
 //
-// Copyright (c) 2019, Lukas Zronek
+// Copyright (c) 2021, Lukas Zronek
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
@@ -34,20 +34,21 @@ class ViewController: NSViewController {
     @IBOutlet weak var keychainCheckBox: NSButtonCell!
     
     let sshKeychain = SSHKeychain.shared
+    let sshAskpass = SSHAskpass.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !sshKeychain.message.isEmpty {
-            infoTextField.stringValue = sshKeychain.message
+        if !sshAskpass.message.isEmpty {
+            infoTextField.stringValue = sshAskpass.message
         }
         
-        if sshKeychain.isConfirmation {
+        if sshAskpass.isConfirmation {
             passwordTextField.isHidden = true
             if let controlView = keychainCheckBox.controlView {
                 controlView.isHidden = true
             }
-        } else if sshKeychain.keypath.isEmpty {
+        } else if sshAskpass.keypath.isEmpty {
             keychainCheckBox.state = NSControl.StateValue.off
             keychainCheckBox.isEnabled = false
         } else {
@@ -68,13 +69,13 @@ class ViewController: NSViewController {
     }
     
     @IBAction func ok(_ sender: Any) {
-        if !sshKeychain.keypath.isEmpty && keychainCheckBox.state == NSControl.StateValue.on {
-            let status = sshKeychain.add(password: passwordTextField.stringValue)
+        if !sshAskpass.keypath.isEmpty && keychainCheckBox.state == NSControl.StateValue.on {
+            let status = sshKeychain.add(keypath: sshAskpass.keypath, password: passwordTextField.stringValue)
 
             if status == errSecDuplicateItem {
-                ask(messageText: "Warning", informativeText: "A passphrase for \"\(sshKeychain.keypath)\" already exists in the keychain.\nDo you want to replace it?", okButtonTitle: "Replace", completionHandler: { (result) in
+                ask(messageText: "Warning", informativeText: "A passphrase for \"\(sshAskpass.keypath)\" already exists in the keychain.\nDo you want to replace it?", okButtonTitle: "Replace", completionHandler: { (result) in
                     if result == .alertFirstButtonReturn {
-                        let status = self.sshKeychain.delete()
+                        let status = self.sshKeychain.delete(keypath: self.sshAskpass.keypath)
                         if status == errSecSuccess {
                             self.ok(self)
                         } else {

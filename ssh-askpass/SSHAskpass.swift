@@ -1,5 +1,5 @@
 //
-// main.swift
+// SSHAskpass.swift
 // This file is part of ssh-askpass-mac
 //
 // Copyright (c) 2021, Lukas Zronek
@@ -25,13 +25,46 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import Cocoa
+import Foundation
 
-SSHAskpass.shared.setup(message: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "")
+class SSHAskpass {
 
-if !SSHAskpass.shared.keypath.isEmpty, !SSHAskpass.shared.failedAttempt, let password = SSHKeychain.shared.get(keypath: SSHAskpass.shared.keypath) {
-    print(password)
-    exit(0)
+    static let shared = SSHAskpass()
+
+    enum PatternType {
+        case prompt
+        case failedAttempt
+        case confirmation
+    }
+
+    let patterns: KeyValuePairs = [
+        "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $": PatternType.prompt,
+        "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $": PatternType.failedAttempt,
+        "^Allow use of key (.*)\\?": PatternType.confirmation,
+        "^Add key (.*) \\(.*\\) to agent\\?$": PatternType.confirmation
+    ]
+
+    var message = String()
+    var keypath = String()
+    var isConfirmation = false
+    var failedAttempt = false
+
+    func setup(message: String) {
+        self.message = message
+
+        for (pattern, type) in patterns {
+            if let keypath = message.parseKeyPath(pattern: pattern) {
+                switch type {
+                case PatternType.prompt:
+                    self.keypath = keypath
+                case PatternType.failedAttempt:
+                    self.keypath = keypath
+                    self.failedAttempt = true
+                case PatternType.confirmation:
+                    self.isConfirmation = true
+                }
+                break
+            }
+        }
+    }
 }
-
-_ = NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv)
