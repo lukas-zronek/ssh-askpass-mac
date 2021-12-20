@@ -64,6 +64,14 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "&quot;Enter passphrase for (stdin): &quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;Enter passphrase for (stdin) (will confirm each use): &quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "&quot;Bad passphrase, try again for .ssh/id_ed25519: &quot;"
             isEnabled = "NO">
          </CommandLineArgument>

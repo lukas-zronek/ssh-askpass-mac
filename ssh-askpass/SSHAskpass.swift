@@ -54,6 +54,10 @@ class SSHAskpass {
 
         for (pattern, type) in patterns {
             if let keypath = message.parseKeyPath(pattern: pattern) {
+                if keypath == "(stdin)" {
+                    break
+                }
+
                 switch type {
                 case PatternType.prompt:
                     self.keypath = keypath
