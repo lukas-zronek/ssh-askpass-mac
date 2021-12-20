@@ -36,6 +36,12 @@ class ViewController: NSViewController {
     let sshKeychain = SSHKeychain.shared
     let sshAskpass = SSHAskpass.shared
     
+#if swift(>=4.2)
+    let cautionName = NSImage.cautionName
+#else
+    let cautionName = NSImage.Name.caution
+#endif
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -110,11 +116,6 @@ class ViewController: NSViewController {
         let alert = NSAlert()
         alert.messageText = messageText
         alert.informativeText = informativeText
-        #if swift(>=4.2)
-        let cautionName = NSImage.cautionName
-        #else
-        let cautionName = NSImage.Name.caution
-        #endif
         alert.icon = NSImage(named: cautionName)
         alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
     }
@@ -123,11 +124,6 @@ class ViewController: NSViewController {
         let alert = NSAlert()
         alert.messageText = messageText
         alert.informativeText = informativeText
-        #if swift(>=4.2)
-        let cautionName = NSImage.cautionName
-        #else
-        let cautionName = NSImage.Name.caution
-        #endif
         alert.icon = NSImage(named: cautionName)
         _ = alert.addButton(withTitle: okButtonTitle)
         _ = alert.addButton(withTitle: "Cancel")
