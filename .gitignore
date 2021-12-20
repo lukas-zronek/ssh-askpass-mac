@@ -1,2 +1,4 @@
 .DS_Store
 build/
+ssh-askpass.xcodeproj/project.xcworkspace/xcuserdata/
+ssh-askpass.xcodeproj/xcuserdata/luka.xcuserdatad/
