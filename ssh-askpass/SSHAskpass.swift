@@ -35,13 +35,16 @@ class SSHAskpass {
         case passphrase
         case badPassphrase
         case confirmation
+        case inputConfirmation
     }
 
     let patterns: KeyValuePairs = [
         "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $": PromptType.passphrase,
         "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $": PromptType.badPassphrase,
         "^Allow use of key (.*)\\?": PromptType.confirmation,
-        "^Add key (.*) \\(.*\\) to agent\\?$": PromptType.confirmation
+        "^Add key (.*) \\(.*\\) to agent\\?$": PromptType.confirmation,
+        "^The authenticity of host '(.*)' can't be established.": PromptType.inputConfirmation
+
     ]
 
     var message = String()

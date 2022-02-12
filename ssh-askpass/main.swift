@@ -29,7 +29,7 @@ import Cocoa
 
 SSHAskpass.shared.setup(message: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "")
 
-if !SSHAskpass.shared.keypath.isEmpty, SSHAskpass.shared.type != .failedAttempt, let password = SSHKeychain.shared.get(keypath: SSHAskpass.shared.keypath) {
+if !SSHAskpass.shared.keypath.isEmpty, SSHAskpass.shared.type == .passphrase, let password = SSHKeychain.shared.get(keypath: SSHAskpass.shared.keypath) {
     print(password)
     exit(0)
 }
