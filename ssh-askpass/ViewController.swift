@@ -54,12 +54,12 @@ class ViewController: NSViewController {
             if let controlView = keychainCheckBox.controlView {
                 controlView.isHidden = true
             }
-        case .prompt:
+        case .passphrase:
             if sshAskpass.keypath.isEmpty {
                 keychainCheckBox.state = NSControl.StateValue.off
                 keychainCheckBox.isEnabled = false
             }
-        case .failedAttempt:
+        case .badPassphrase:
             break
         }
         

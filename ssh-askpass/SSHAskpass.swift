@@ -32,21 +32,21 @@ class SSHAskpass {
     static let shared = SSHAskpass()
 
     enum PromptType {
-        case prompt
-        case failedAttempt
+        case passphrase
+        case badPassphrase
         case confirmation
     }
 
     let patterns: KeyValuePairs = [
-        "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $": PromptType.prompt,
-        "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $": PromptType.failedAttempt,
+        "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $": PromptType.passphrase,
+        "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $": PromptType.badPassphrase,
         "^Allow use of key (.*)\\?": PromptType.confirmation,
         "^Add key (.*) \\(.*\\) to agent\\?$": PromptType.confirmation
     ]
 
     var message = String()
     var keypath = String()
-    var type:PromptType = PromptType.prompt
+    var type:PromptType = PromptType.passphrase
 
     func setup(message: String) {
         self.message = message
