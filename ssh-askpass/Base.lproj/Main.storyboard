@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -685,7 +685,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="SSH" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" id="IQv-IB-iLA">
+                    <window key="window" title="SSH" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -707,135 +707,121 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="ssh_askpass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="556" height="150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="149"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ug-bX-0GN">
-                                <rect key="frame" x="20" y="20" width="516" height="110"/>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="12" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="249.99998474121094" verticalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GZ1-AF-glf">
+                                <rect key="frame" x="20" y="20" width="400" height="109"/>
                                 <subviews>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tzi-6P-5VI">
-                                        <rect key="frame" x="0.0" y="40" width="64" height="70"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="obo-a4-MMN"/>
-                                            <constraint firstAttribute="width" constant="64" id="vZR-sL-5gr"/>
-                                        </constraints>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSLockUnlockedTemplate" id="1hy-hN-4o0"/>
-                                    </imageView>
-                                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="GZ1-AF-glf">
-                                        <rect key="frame" x="76" y="0.0" width="440" height="110"/>
+                                    <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="pPa-nc-OI7">
+                                        <rect key="frame" x="-2" y="93" width="404" height="16"/>
+                                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" title="Please enter your passphrase:" id="zuF-66-vFx">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <secureTextField verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="jN8-pL-Gj8">
+                                        <rect key="frame" x="0.0" y="60" width="400" height="21"/>
+                                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="xd1-lh-syn">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <allowedInputSourceLocales>
+                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                            </allowedInputSourceLocales>
+                                        </secureTextFieldCell>
+                                    </secureTextField>
+                                    <button horizontalHuggingPriority="249" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="eJm-a1-X8C">
+                                        <rect key="frame" x="-2" y="31" width="402" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Remember passphrase in my keychain" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vTY-yF-QDM">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <connections>
+                                                <action selector="useKeychainChanged:" target="XfG-lQ-9wD" id="AtP-Wi-Znm"/>
+                                            </connections>
+                                        </buttonCell>
+                                    </button>
+                                    <stackView distribution="fill" orientation="vertical" alignment="trailing" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fHV-OC-gaY">
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="20"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pPa-nc-OI7">
-                                                <rect key="frame" x="-2" y="93" width="187" height="17"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="Please enter your passphrase:" id="zuF-66-vFx">
-                                                    <font key="font" metaFont="system"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                            <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jN8-pL-Gj8">
-                                                <rect key="frame" x="0.0" y="59" width="440" height="22"/>
-                                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="xd1-lh-syn">
-                                                    <font key="font" metaFont="system"/>
-                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <allowedInputSourceLocales>
-                                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                                                    </allowedInputSourceLocales>
-                                                </secureTextFieldCell>
-                                            </secureTextField>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eJm-a1-X8C">
-                                                <rect key="frame" x="-2" y="31" width="254" height="18"/>
-                                                <buttonCell key="cell" type="check" title="Remember passphrase in my keychain" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vTY-yF-QDM">
-                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                    <connections>
-                                                        <action selector="useKeychainChanged:" target="XfG-lQ-9wD" id="AtP-Wi-Znm"/>
-                                                    </connections>
-                                                </buttonCell>
-                                            </button>
-                                            <stackView distribution="fill" orientation="vertical" alignment="trailing" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fHV-OC-gaY">
-                                                <rect key="frame" x="0.0" y="0.0" width="440" height="21"/>
+                                            <stackView distribution="fillEqually" orientation="horizontal" alignment="top" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7aY-05-yiN">
+                                                <rect key="frame" x="264" y="0.0" width="136" height="20"/>
                                                 <subviews>
-                                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="top" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7aY-05-yiN">
-                                                        <rect key="frame" x="288" y="0.0" width="152" height="21"/>
-                                                        <subviews>
-                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3KT-jC-o0M">
-                                                                <rect key="frame" x="-6" y="-7" width="82" height="32"/>
-                                                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BSA-BV-QIc">
-                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <string key="keyEquivalent" base64-UTF8="YES">
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3KT-jC-o0M">
+                                                        <rect key="frame" x="-7" y="-7" width="76" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BSA-BV-QIc">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                            <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="cancel:" target="XfG-lQ-9wD" id="blH-q2-t1b"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-Z5-8wL">
-                                                                <rect key="frame" x="76" y="-7" width="82" height="32"/>
-                                                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="amW-WP-bGX">
-                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <string key="keyEquivalent" base64-UTF8="YES">
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="cancel:" target="XfG-lQ-9wD" id="blH-q2-t1b"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Je-Z5-8wL">
+                                                        <rect key="frame" x="67" y="-7" width="76" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="amW-WP-bGX">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                            <string key="keyEquivalent" base64-UTF8="YES">
 DQ
 </string>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="ok:" target="XfG-lQ-9wD" id="8Qj-bC-OgV"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                        <visibilityPriorities>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                        </visibilityPriorities>
-                                                        <customSpacing>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                        </customSpacing>
-                                                    </stackView>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="ok:" target="XfG-lQ-9wD" id="8Qj-bC-OgV"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="1Je-Z5-8wL" firstAttribute="top" secondItem="7aY-05-yiN" secondAttribute="top" id="EIM-gS-Wb7"/>
+                                                    <constraint firstItem="3KT-jC-o0M" firstAttribute="top" secondItem="7aY-05-yiN" secondAttribute="top" id="GOs-Ye-vMv"/>
+                                                    <constraint firstAttribute="bottom" secondItem="1Je-Z5-8wL" secondAttribute="bottom" id="byG-Xq-nPl"/>
+                                                    <constraint firstAttribute="bottom" secondItem="3KT-jC-o0M" secondAttribute="bottom" id="jbZ-RZ-ugx"/>
+                                                </constraints>
                                                 <visibilityPriorities>
+                                                    <integer value="1000"/>
                                                     <integer value="1000"/>
                                                 </visibilityPriorities>
                                                 <customSpacing>
                                                     <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="jN8-pL-Gj8" firstAttribute="trailing" secondItem="fHV-OC-gaY" secondAttribute="trailing" id="vdj-Tz-9wV"/>
-                                        </constraints>
                                         <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
                                             <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
                                             <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="6X6-js-fze"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="800" id="ohE-ZK-RHh"/>
+                                </constraints>
                                 <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="6Ug-bX-0GN" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="LX1-6x-SGo"/>
-                            <constraint firstAttribute="trailing" secondItem="6Ug-bX-0GN" secondAttribute="trailing" constant="20" symbolic="YES" id="fgA-v7-V7k"/>
-                            <constraint firstItem="6Ug-bX-0GN" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="mef-DC-GSf"/>
-                            <constraint firstAttribute="bottom" secondItem="6Ug-bX-0GN" secondAttribute="bottom" constant="20" id="xb7-Iv-Dpu"/>
+                            <constraint firstItem="GZ1-AF-glf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="4mI-h5-gDs"/>
+                            <constraint firstAttribute="trailing" secondItem="GZ1-AF-glf" secondAttribute="trailing" constant="20" symbolic="YES" id="8GA-sv-1v7"/>
+                            <constraint firstItem="GZ1-AF-glf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="Efg-nU-JGL"/>
+                            <constraint firstAttribute="bottom" secondItem="GZ1-AF-glf" secondAttribute="bottom" constant="20" symbolic="YES" id="vuk-Qx-9oC"/>
                         </constraints>
                     </view>
                     <connections>
@@ -846,10 +832,7 @@ DQ
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="37" y="641"/>
+            <point key="canvasLocation" x="37" y="640.5"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="NSLockUnlockedTemplate" width="10" height="14"/>
-    </resources>
 </document>
