@@ -31,43 +31,33 @@ class SSHAskpass {
 
     static let shared = SSHAskpass()
 
-    enum PatternType {
+    enum PromptType {
         case prompt
         case failedAttempt
         case confirmation
     }
 
     let patterns: KeyValuePairs = [
-        "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $": PatternType.prompt,
-        "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $": PatternType.failedAttempt,
-        "^Allow use of key (.*)\\?": PatternType.confirmation,
-        "^Add key (.*) \\(.*\\) to agent\\?$": PatternType.confirmation
+        "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $": PromptType.prompt,
+        "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $": PromptType.failedAttempt,
+        "^Allow use of key (.*)\\?": PromptType.confirmation,
+        "^Add key (.*) \\(.*\\) to agent\\?$": PromptType.confirmation
     ]
 
     var message = String()
     var keypath = String()
-    var isConfirmation = false
-    var failedAttempt = false
+    var type:PromptType = PromptType.prompt
 
     func setup(message: String) {
         self.message = message
 
         for (pattern, type) in patterns {
             if let keypath = message.parseKeyPath(pattern: pattern) {
-                if keypath == "(stdin)" {
-                    break
-                }
-
-                switch type {
-                case PatternType.prompt:
+                if keypath != "(stdin)" {
                     self.keypath = keypath
-                case PatternType.failedAttempt:
-                    self.keypath = keypath
-                    self.failedAttempt = true
-                case PatternType.confirmation:
-                    self.isConfirmation = true
                 }
-                break
+                self.type = type
+                break;
             }
         }
     }

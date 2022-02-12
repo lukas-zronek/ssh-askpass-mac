@@ -48,23 +48,27 @@ class ViewController: NSViewController {
         if !sshAskpass.message.isEmpty {
             infoTextField.stringValue = sshAskpass.message
         }
-        
-        if sshAskpass.isConfirmation {
+        switch self.sshAskpass.type {
+        case .confirmation:
             passwordTextField.isHidden = true
             if let controlView = keychainCheckBox.controlView {
                 controlView.isHidden = true
             }
-        } else if sshAskpass.keypath.isEmpty {
-            keychainCheckBox.state = NSControl.StateValue.off
-            keychainCheckBox.isEnabled = false
-        } else {
-            if let obj = UserDefaults.standard.object(forKey: "useKeychain") {
-                if let useKeychain = obj as? Bool {
-                    if (useKeychain) {
-                        keychainCheckBox.state = NSControl.StateValue.on
-                    } else {
-                        keychainCheckBox.state = NSControl.StateValue.off
-                    }
+        case .prompt:
+            if sshAskpass.keypath.isEmpty {
+                keychainCheckBox.state = NSControl.StateValue.off
+                keychainCheckBox.isEnabled = false
+            }
+        case .failedAttempt:
+            break
+        }
+        
+        if let obj = UserDefaults.standard.object(forKey: "useKeychain") {
+            if let useKeychain = obj as? Bool {
+                if (useKeychain) {
+                    keychainCheckBox.state = NSControl.StateValue.on
+                } else {
+                    keychainCheckBox.state = NSControl.StateValue.off
                 }
             }
         }
