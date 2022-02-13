@@ -2,12 +2,12 @@
 
 ssh-askpass-mac is a graphical front-end for [ssh-add](https://man.openbsd.org/ssh-add) on macOS, which can store the password of a private key in the keychain. It is executed by _ssh-add_ when adding encrypted private keys to the ssh-agent:
 
-![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/passphrase.png  "Screenshot of ssh-askpass-mac")
+![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/passphrase-v2.png  "Screenshot of ssh-askpass-mac")
 
 It can also be used as a confirmation dialog when a stored key is accessed after adding the key with  
 _ssh-add -c_ (recommended):
 
-![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/confirmation.png  "Screenshot of ssh-askpass-mac")
+![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/confirmation-v2.png  "Screenshot of ssh-askpass-mac")
 
 ssh-askpass-mac was inspired by [ksshaskpass](https://github.com/KDE/ksshaskpass) and should behave like the keychain support prior to macOS Sierra.
 
