@@ -47,6 +47,12 @@ cp at.zronek.ssh-askpass.plist ~/Library/LaunchAgents/
 launchctl load -w ~/Library/LaunchAgents/at.zronek.ssh-askpass.plist
 ```
 
+On macOS < 12 (Monterey) or OpenSSH < 8.3 add the following line to the startup file of your shell (~/.bash_profile (bash) or ~/.zprofile (zsh)):
+
+```
+ssh-add $@ < /dev/null
+```
+
 Than restart the Terminal app.
 
 ## Configuration
