@@ -39,6 +39,7 @@ class SSHAskpass {
     }
 
     let patterns: KeyValuePairs = [
+        "^Enter passphrase for key '(.*)': $": PromptType.passphrase,
         "^Enter passphrase for (.*?)( \\(will confirm each use\\))?: $": PromptType.passphrase,
         "^Bad passphrase, try again for (.*?)( \\(will confirm each use\\))?: $": PromptType.badPassphrase,
         "^Allow use of key (.*)\\?": PromptType.confirmation,

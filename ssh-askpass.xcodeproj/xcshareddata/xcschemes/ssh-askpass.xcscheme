@@ -60,6 +60,10 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "&quot;Enter passphrase for key &apos;.ssh/id_ed25519&apos;: &quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "&quot;Enter passphrase for .ssh/id_ed25519 (will confirm each use): &quot;"
             isEnabled = "NO">
          </CommandLineArgument>
