@@ -43,30 +43,13 @@ xcodebuild
 
 ```
 cp -R build/Release/ssh-askpass.app /Applications
+cp at.zronek.ssh-askpass.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/at.zronek.ssh-askpass.plist
 ```
+
+Than restart the Terminal app.
 
 ## Configuration
-
-Add the following lines to your _.bash_profile_ in your home directory:
-
-```
-ssh_askpass_mac=/Applications/ssh-askpass.app/Contents/MacOS/ssh-askpass
-export SSH_ASKPASS=$ssh_askpass_mac
-if [ -z ${DISPLAY+x} ]
-then
-        export DISPLAY=
-        launchctl setenv DISPLAY ""
-fi
-ssh_askpass_env=$(launchctl getenv SSH_ASKPASS)
-if [ "$ssh_askpass_env" != "$ssh_askpass_mac" ]
-then
-        launchctl setenv SSH_ASKPASS "$ssh_askpass_mac" && launchctl stop com.openssh.ssh-agent
-fi
-ssh-add()
-{
-        command ssh-add $@ < /dev/null
-}
-```
 
 The setting "Remember passphrase in my keychain" is enabled by default. A change of the setting is retained.
 You can also disable the keychain with the following command:

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>at.zronek.ssh-askpass</string>
+
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/sh</string>
+		<string>-c</string>
+		<string>
+		launchctl setenv SSH_ASKPASS /Applications/ssh-askpass.app/Contents/MacOS/ssh-askpass
+		launchctl setenv SSH_ASKPASS_REQUIRE force
+		launchctl stop com.openssh.ssh-agent
+		</string>
+	</array>
+
+	<key>RunAtLoad</key>
+	<true/>
+</dict>
+</plist>
