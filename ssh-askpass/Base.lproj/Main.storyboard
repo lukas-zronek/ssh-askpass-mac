@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -825,8 +825,10 @@ DQ
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="3KT-jC-o0M" id="VY8-gL-axx"/>
                         <outlet property="infoTextField" destination="pPa-nc-OI7" id="4pg-XO-0e0"/>
                         <outlet property="keychainCheckBox" destination="vTY-yF-QDM" id="EPY-Wc-USv"/>
+                        <outlet property="okButton" destination="1Je-Z5-8wL" id="FEV-pX-zoR"/>
                         <outlet property="passwordTextField" destination="jN8-pL-Gj8" id="Wdt-VH-uft"/>
                     </connections>
                 </viewController>

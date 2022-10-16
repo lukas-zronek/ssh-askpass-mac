@@ -27,7 +27,9 @@
 
 import Cocoa
 
-SSHAskpass.shared.setup(message: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "")
+let promptEnv = ProcessInfo.processInfo.environment["SSH_ASKPASS_PROMPT"];
+
+SSHAskpass.shared.setup(message: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "", promptEnv: promptEnv)
 
 if !SSHAskpass.shared.keypath.isEmpty, SSHAskpass.shared.type == .passphrase, let password = SSHKeychain.shared.get(keypath: SSHAskpass.shared.keypath) {
     print(password)

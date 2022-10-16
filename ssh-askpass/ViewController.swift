@@ -32,6 +32,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var infoTextField: NSTextField!
     @IBOutlet weak var passwordTextField: NSSecureTextField!
     @IBOutlet weak var keychainCheckBox: NSButtonCell!
+    @IBOutlet weak var cancelButton: NSButton!
+    @IBOutlet weak var okButton: NSButton!
     
     let sshKeychain = SSHKeychain.shared
     let sshAskpass = SSHAskpass.shared
@@ -62,6 +64,13 @@ class ViewController: NSViewController {
         case .badPassphrase:
             break
         case .inputConfirmation:
+            if let controlView = keychainCheckBox.controlView {
+                controlView.isHidden = true
+            }
+        case .information:
+            okButton.isHidden = true
+            cancelButton.title = "Close"
+            passwordTextField.isHidden = true
             if let controlView = keychainCheckBox.controlView {
                 controlView.isHidden = true
             }

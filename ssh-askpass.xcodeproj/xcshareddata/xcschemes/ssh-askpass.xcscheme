@@ -107,7 +107,33 @@
             argument = "&quot;Bad passphrase, try again for  (will confirm each use): &quot;"
             isEnabled = "NO">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;Allow shared connection to myserver?&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "SSH_ASKPASS_PROMPT"
+            value = ""
+            isEnabled = "NO">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "SSH_ASKPASS_PROMPT"
+            value = "none"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "SSH_ASKPASS_PROMPT"
+            value = "confirm"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "SSH_ASKPASS_PROMPT"
+            value = "invalid value"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

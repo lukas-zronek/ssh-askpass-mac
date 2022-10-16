@@ -36,6 +36,7 @@ class SSHAskpass {
         case badPassphrase
         case confirmation
         case inputConfirmation
+        case information
     }
 
     let patterns: KeyValuePairs = [
@@ -52,8 +53,16 @@ class SSHAskpass {
     var keypath = String()
     var type:PromptType = PromptType.passphrase
 
-    func setup(message: String) {
+    func setup(message: String, promptEnv: String?) {
         self.message = message
+        
+        if promptEnv == "confirm" {
+            self.type = PromptType.confirmation
+            return
+        } else if promptEnv == "none" {
+            self.type = PromptType.information
+            return
+        }
 
         for (pattern, type) in patterns {
             if let keypath = message.parseKeyPath(pattern: pattern) {
