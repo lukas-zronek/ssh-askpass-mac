@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>at.zronek.ssh-askpass</string>
+	<string>at.zronek.lukas.ssh-askpass</string>
 
 	<key>ProgramArguments</key>
 	<array>
