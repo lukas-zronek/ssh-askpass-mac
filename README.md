@@ -47,7 +47,7 @@ cp at.zronek.lukas.ssh-askpass.plist ~/Library/LaunchAgents/
 launchctl load -w ~/Library/LaunchAgents/at.zronek.lukas.ssh-askpass.plist
 ```
 
-On macOS < 12 (Monterey) or OpenSSH < 8.3 add the following line to the startup file of your shell (~/.bash_profile (bash) or ~/.zprofile (zsh)):
+On macOS < 12 (Monterey) or OpenSSH < 8.4 add the following line to the startup file of your shell (~/.bash_profile (bash) or ~/.zprofile (zsh)):
 
 ```
 ssh-add $@ < /dev/null
