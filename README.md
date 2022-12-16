@@ -46,6 +46,8 @@ ln -s /Applications/ssh-askpass.app/Contents/Resources/at.zronek.lukas.ssh-askpa
 launchctl load -w ~/Library/LaunchAgents/at.zronek.lukas.ssh-askpass.plist
 ```
 
+Than restart the Terminal app.
+
 On macOS < 12 (Monterey) or OpenSSH < 8.4 add the following line to the startup file of your shell (~/.bash_profile (bash) or ~/.zprofile (zsh)):
 
 ```
@@ -54,8 +56,6 @@ ssh-add()
 	command ssh-add $@ </dev/null
 }
 ```
-
-Than restart the Terminal app.
 
 ## Configuration
 
