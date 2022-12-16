@@ -42,7 +42,7 @@ xcodebuild
 **Install**
 
 ```
-cp -R build/Release/ssh-askpass.app /Applications
+mv build/Release/ssh-askpass.app /Applications
 ln -s /Applications/ssh-askpass.app/Contents/Resources/at.zronek.lukas.ssh-askpass.plist ~/Library/LaunchAgents/
 launchctl load -w ~/Library/LaunchAgents/at.zronek.lukas.ssh-askpass.plist
 ```
