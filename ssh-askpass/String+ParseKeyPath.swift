@@ -2,7 +2,7 @@
 // String+ParseKeyPath.swift
 // This file is part of ssh-askpass-mac
 //
-// Copyright (c) 2019, Lukas Zronek
+// Copyright (c) 2022, Lukas Zronek
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
@@ -38,5 +38,19 @@ extension String {
             return String(self[Range(match.range(at: 1), in: self)!])
         }
         return nil
+    }
+
+    func getAbsolutePath() -> String? {
+        let path_expanded = NSString(string: self).expandingTildeInPath
+        
+        let url = URL(fileURLWithPath: path_expanded)
+        
+        if let path_abs = url.withUnsafeFileSystemRepresentation ({ realpath($0, nil) }) {
+            let fullUrl = URL(fileURLWithFileSystemRepresentation: path_abs, isDirectory: false, relativeTo: nil)
+            free(path_abs)
+            return fullUrl.path
+        } else {
+            return path_expanded
+        }
     }
 }

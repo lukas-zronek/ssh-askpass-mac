@@ -67,14 +67,8 @@ class SSHAskpass {
         for (pattern, type) in patterns {
             if let keypath = message.parseKeyPath(pattern: pattern) {
                 if keypath != "(stdin)" {
-                    let keypath_expanded = NSString(string: keypath).expandingTildeInPath
-                    
-                    let url = URL(fileURLWithPath:keypath_expanded)
-                    
-                    if let keypath_abs = url.withUnsafeFileSystemRepresentation ({ realpath($0, nil) }) {
-                            let fullUrl = URL(fileURLWithFileSystemRepresentation: keypath_abs, isDirectory: false, relativeTo: nil)
-                            free(keypath_abs)
-                        self.keypath = fullUrl.path
+                    if let keypath_absolute = keypath.getAbsolutePath() {
+                        self.keypath = keypath_absolute
                     } else {
                         self.keypath = keypath
                     }
