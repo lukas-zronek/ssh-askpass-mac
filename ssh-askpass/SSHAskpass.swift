@@ -46,7 +46,6 @@ class SSHAskpass {
         "^Allow use of key (.*)\\?": PromptType.confirmation,
         "^Add key (.*) \\(.*\\) to agent\\?$": PromptType.confirmation,
         "^The authenticity of host '(.*)' can't be established.": PromptType.inputConfirmation
-
     ]
 
     var message = String()
