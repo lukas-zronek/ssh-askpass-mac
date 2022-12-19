@@ -66,11 +66,7 @@ class SSHAskpass {
         for (pattern, type) in patterns {
             if let keypath = message.parseKeyPath(pattern: pattern) {
                 if keypath != "(stdin)" {
-                    if let keypath_absolute = keypath.getAbsolutePath() {
-                        self.keypath = keypath_absolute
-                    } else {
-                        self.keypath = keypath
-                    }
+                    self.keypath = keypath
                 }
                 self.type = type
                 break;
