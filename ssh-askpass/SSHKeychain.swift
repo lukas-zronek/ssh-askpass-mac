@@ -46,7 +46,7 @@ class SSHKeychain {
         let query: [CFString: AnyObject] = [
             kSecClass: DefaultValues.itemClass,
             kSecAttrAccount: keypath as CFString,
-            kSecMatchLimitOne: kSecMatchLimitOne,
+            kSecMatchLimit: kSecMatchLimitOne,
             kSecReturnData: kCFBooleanTrue
         ]
         
