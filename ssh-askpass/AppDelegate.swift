@@ -31,9 +31,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if let window = NSApp.windows.first {
+            // show window always on top
             window.level = .modalPanel
             window.orderFrontRegardless()
         }
+        // don't show app in the dock and don't show the menu
         NSApp.setActivationPolicy(NSApplication.ActivationPolicy.accessory)
         NSApp.activate(ignoringOtherApps: true)
     }
