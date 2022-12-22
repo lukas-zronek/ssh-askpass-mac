@@ -66,6 +66,10 @@ You can also disable the keychain with the following command:
 defaults write at.zronek.lukas.ssh-askpass useKeychain -bool false
 ```
 
+## Notes
+
+If [Secure Keyboard Entry](https://support.apple.com/guide/terminal/use-secure-keyboard-entry-trml109/mac) in the Terminal.app is enabled, _ssh-askpass-mac_ (and other apps launched from the Terminal.app) can not grab focus. The focus remains on the Terminal.app window, until the user clicks on the _ssh-askpass-mac_ window.
+
 ## License
 
 ssh-askpass-mac is released under [BSD 2-Clause License](https://github.com/lukas-zronek/ssh-askpass-mac/blob/master/LICENSE).
