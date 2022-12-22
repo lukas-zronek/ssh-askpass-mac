@@ -34,6 +34,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             // show window always on top
             window.level = .modalPanel
             window.orderFrontRegardless()
+            // Sets the window’s location to the center of the screen
+            window.center()
         }
         // don't show app in the dock and don't show the menu
         NSApp.setActivationPolicy(NSApplication.ActivationPolicy.accessory)
