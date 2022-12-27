@@ -2,11 +2,11 @@
 
 _ssh-askpass-mac_ is a graphical passphrase dialog for [OpenSSH](https://www.openssh.com) on macOS, which can store the passphrase of a private key in the [keychain](https://support.apple.com/guide/mac-help/use-keychains-to-store-passwords-mchlf375f392/mac). It is intended to be called by the OpenSSH client programs and not invoked directly.
 
-![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/passphrase-v2.png  "Screenshot of ssh-askpass-mac")
+![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/passphrase-v3.png  "Screenshot of ssh-askpass-mac")
 
 It can also be used as a confirmation dialog when a stored key is accessed after adding the private key with [ssh-add](https://man.openbsd.org/ssh-add.1) using -c argument (recommended):
 
-![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/confirmation-v2.png  "Screenshot of ssh-askpass-mac")
+![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/confirmation-v3.png  "Screenshot of ssh-askpass-mac")
 
 ssh-askpass-mac was inspired by [ksshaskpass](https://github.com/KDE/ksshaskpass) and should behave like the keychain support prior to macOS Sierra.
 
