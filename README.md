@@ -4,7 +4,7 @@ _ssh-askpass-mac_ is a graphical passphrase dialog for [OpenSSH](https://www.ope
 
 ![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/passphrase-v3.png  "Screenshot of ssh-askpass-mac")
 
-It can also be used as a confirmation dialog when a stored key is accessed after adding the private key with [ssh-add](https://man.openbsd.org/ssh-add.1) using -c argument (recommended):
+It can also be used as a confirmation dialog when adding the private key to the [ssh-agent](https://man.openbsd.org/ssh-agent.1) with [ssh-add -c](https://man.openbsd.org/ssh-add.1) (recommended):
 
 ![screenshot](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/confirmation-v3.png  "Screenshot of ssh-askpass-mac")
 
