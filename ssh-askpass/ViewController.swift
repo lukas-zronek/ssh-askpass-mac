@@ -44,6 +44,17 @@ class ViewController: NSViewController {
     let cautionName = NSImage.Name.caution
 #endif
 
+    override func viewDidAppear() {
+        // set first responder to allow closing window with escape key
+        switch self.sshAskpass.type {
+        case .confirmation, .information:
+            if let window = self.view.window {
+                window.makeFirstResponder(cancelButton)
+            }
+        default: break // passwordTextField is first responder by default
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
