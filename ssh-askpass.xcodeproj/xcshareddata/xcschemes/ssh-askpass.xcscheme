@@ -112,6 +112,10 @@
             argument = "&quot;Allow shared connection to myserver?&quot;"
             isEnabled = "NO">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;The authenticity of host &apos;xyz&apos; can&apos;t be established.&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
