@@ -56,6 +56,9 @@ class ViewController: NSViewController {
             if let controlView = keychainCheckBox.controlView {
                 controlView.isHidden = true
             }
+            
+            okButton.keyEquivalent = "" // reset default behaviour
+            cancelButton.keyEquivalent = "\r" // set to return key
         case .passphrase:
             if sshAskpass.keypath.isEmpty {
                 keychainCheckBox.state = NSControl.StateValue.off
