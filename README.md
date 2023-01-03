@@ -14,12 +14,6 @@ ssh-askpass-mac was inspired by [ksshaskpass](https://github.com/KDE/ksshaskpass
 
 ![](https://github.com/lukas-zronek/screenshots/blob/master/ssh-askpass-mac/passphrase-demo-v3.webp  "Demo of ssh-askpass-mac")
 
-## Security
-
-The passwords are stored in the login keychain by default, which is automatically unlocked when you log in. I recommend creating several keychains and enabling the auto-lock feature. After a password is saved in the login keychain, you can later move it to any other keychain using the keychain app. ssh-askpass-mac will fetch the password automatically from any keychain.
-
-The password is temporarily stored in the memory area of the ssh-askpass-mac app and with the Swift programming language it is not possible to ensure that the memory area is overwritten. A local attacker with administrator rights could read the memory and extract the password.
-
 ## Installation
 
 - Download and unzip the latest version from the [release page](https://github.com/lukas-zronek/ssh-askpass-mac/releases).
@@ -81,6 +75,11 @@ You can also disable the keychain with the following command:
 ```
 defaults write at.zronek.lukas.ssh-askpass useKeychain -bool false
 ```
+## Security
+
+The passwords are stored in the login keychain by default, which is automatically unlocked when you log in. I recommend creating several keychains and enabling the auto-lock feature. After a password is saved in the login keychain, you can later move it to any other keychain using the keychain app. ssh-askpass-mac will fetch the password automatically from any keychain.
+
+The password is temporarily stored in the memory area of the ssh-askpass-mac app and with the Swift programming language it is not possible to ensure that the memory area is overwritten. A local attacker with administrator rights could read the memory and extract the password.
 
 ## Notes
 
