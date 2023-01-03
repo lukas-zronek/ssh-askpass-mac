@@ -20,7 +20,19 @@ The passwords are stored in the login keychain by default, which is automaticall
 
 The password is temporarily stored in the memory area of the ssh-askpass-mac app and with the Swift programming language it is not possible to ensure that the memory area is overwritten. A local attacker with administrator rights could read the memory and extract the password.
 
-## Building and Installation
+## Installation
+
+- Download and unzip the latest version from the [release page](https://github.com/lukas-zronek/ssh-askpass-mac/releases).
+- Drag and drop _ssh-askpass.app_ into the Applications folder.
+- Control-click the app icon, then choose Open from the menu.
+- Click Open to permently add the app as an exception to your security settings.
+- Open a terminal app and run:
+```
+ln -s /Applications/ssh-askpass.app/Contents/Resources/at.zronek.lukas.ssh-askpass.plist ~/Library/LaunchAgents/ && launchctl load -w ~/Library/LaunchAgents/at.zronek.lukas.ssh-askpass.plist
+```
+- Restart the terminal app
+
+## Building
 
 **Install Xcode**
 
