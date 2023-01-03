@@ -77,7 +77,9 @@ defaults write at.zronek.lukas.ssh-askpass useKeychain -bool false
 ```
 ## Security
 
-The passwords are stored in the login keychain by default, which is automatically unlocked when you log in. I recommend creating several keychains and enabling the auto-lock feature. After a password is saved in the login keychain, you can later move it to any other keychain using the keychain app. ssh-askpass-mac will fetch the password automatically from any keychain.
+Passphrases are stored in the macOS login keychain by default. The user can choose to always allow access to the keychain item, which is not recommended. In this case, the app is permanently trusted and given access to the keychain item in the future without asking the user again.
+
+The Keychain Access app can be used to create a custom keychain and enable auto-lock. After a passphrase is saved in the login keychain, the item can later be moved to another keychain using the Keychain Access app. ssh-askpass-mac will automatically fetch the passphrase from any keychain.
 
 The password is temporarily stored in the memory area of the ssh-askpass-mac app and with the Swift programming language it is not possible to ensure that the memory area is overwritten. A local attacker with administrator rights could read the memory and extract the password.
 
