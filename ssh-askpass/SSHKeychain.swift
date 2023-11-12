@@ -64,7 +64,7 @@ class SSHKeychain {
         
         // no apps are trusted to access the keychain item
         var accessRef: SecAccess?
-        status = SecAccessCreate(label as CFString, [] as CFArray, &accessRef)
+        status = SecAccessCreate(label as CFString, [SecTrustedApplication]() as CFArray, &accessRef)
         if status != errSecSuccess {
             return status
         }
