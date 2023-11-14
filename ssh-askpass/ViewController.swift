@@ -71,7 +71,7 @@ class ViewController: NSViewController {
             okButton.keyEquivalent = "" // reset default behaviour
             cancelButton.keyEquivalent = "\r" // set to return key
         case .passphrase:
-            if sshAskpass.keypath.isEmpty {
+            if sshAskpass.account.isEmpty {
                 keychainCheckBox.state = NSControl.StateValue.off
                 keychainCheckBox.isEnabled = false
             }
@@ -108,13 +108,13 @@ class ViewController: NSViewController {
     }
     
     @IBAction func ok(_ sender: Any) {
-        if (sshAskpass.type == .passphrase || sshAskpass.type == .badPassphrase) && !sshAskpass.keypath.isEmpty && keychainCheckBox.state == NSControl.StateValue.on {
-            let status = sshKeychain.add(keypath: sshAskpass.keypath, password: passwordTextField.stringValue)
+        if (sshAskpass.type == .passphrase || sshAskpass.type == .badPassphrase) && !sshAskpass.account.isEmpty && keychainCheckBox.state == NSControl.StateValue.on {
+            let status = sshKeychain.add(account: sshAskpass.account, password: passwordTextField.stringValue)
 
             if status == errSecDuplicateItem {
-                ask(messageText: "Warning", informativeText: "A passphrase for \"\(sshAskpass.keypath)\" already exists in the keychain.\nDo you want to replace it?", okButtonTitle: "Replace", completionHandler: { (result) in
+                ask(messageText: "Warning", informativeText: "A passphrase for \"\(sshAskpass.account)\" already exists in the keychain.\nDo you want to replace it?", okButtonTitle: "Replace", completionHandler: { (result) in
                     if result == .alertFirstButtonReturn {
-                        let status = self.sshKeychain.delete(keypath: self.sshAskpass.keypath)
+                        let status = self.sshKeychain.delete(account: self.sshAskpass.account)
                         if status == errSecSuccess {
                             self.ok(self)
                         } else {

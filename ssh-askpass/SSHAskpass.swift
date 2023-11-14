@@ -49,7 +49,7 @@ class SSHAskpass {
     ]
 
     var message = String()
-    var keypath = String()
+    var account = String()
     var type:PromptType = PromptType.passphrase
 
     func setup(message: String, promptEnv: String?) {
@@ -64,9 +64,9 @@ class SSHAskpass {
         }
 
         for (pattern, type) in patterns {
-            if let keypath = message.parseKeyPath(pattern: pattern) {
-                if keypath != "(stdin)" {
-                    self.keypath = keypath
+            if let account = message.parseAccount(pattern: pattern) {
+                if account != "(stdin)" {
+                    self.account = account
                 }
                 self.type = type
                 break;

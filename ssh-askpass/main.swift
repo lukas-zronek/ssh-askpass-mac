@@ -31,16 +31,16 @@ let promptEnv = ProcessInfo.processInfo.environment["SSH_ASKPASS_PROMPT"];
 
 SSHAskpass.shared.setup(message: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "", promptEnv: promptEnv)
 
-if !SSHAskpass.shared.keypath.isEmpty, SSHAskpass.shared.type == .passphrase {
-    let original_keypath = SSHAskpass.shared.keypath
+if !SSHAskpass.shared.account.isEmpty, SSHAskpass.shared.type == .passphrase {
+    let original_keypath = SSHAskpass.shared.account
     var isAbsolute = false
     
-    if let absolute_keypath = SSHAskpass.shared.keypath.getAbsolutePath() {
-        if let password = SSHKeychain.shared.get(keypath: absolute_keypath) {
+    if let absolute_keypath = SSHAskpass.shared.account.getAbsolutePath() {
+        if let password = SSHKeychain.shared.get(account: absolute_keypath) {
             print(password)
             exit(0)
         }
-        SSHAskpass.shared.keypath = absolute_keypath
+        SSHAskpass.shared.account = absolute_keypath
         
         if (absolute_keypath == original_keypath) {
             isAbsolute = true
@@ -48,7 +48,7 @@ if !SSHAskpass.shared.keypath.isEmpty, SSHAskpass.shared.type == .passphrase {
     }
     
     if !isAbsolute {
-        if let password = SSHKeychain.shared.get(keypath: original_keypath) {
+        if let password = SSHKeychain.shared.get(account: original_keypath) {
             print(password)
             exit(0)
         }

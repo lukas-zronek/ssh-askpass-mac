@@ -33,11 +33,11 @@ class SSHKeychain {
     
     private init() {}
     
-    func get(keypath: String) -> String? {
+    func get(account: String) -> String? {
         var result: AnyObject?
         let query: [CFString: AnyObject] = [
             kSecClass: kSecClassGenericPassword,
-            kSecAttrAccount: keypath as CFString,
+            kSecAttrAccount: account as CFString,
             kSecMatchLimit: kSecMatchLimitOne,
             kSecReturnData: kCFBooleanTrue
         ]
@@ -49,10 +49,10 @@ class SSHKeychain {
         return password
     }
     
-    func add(keypath: String, password: String) -> OSStatus {
+    func add(account: String, password: String) -> OSStatus {
         var status: OSStatus
 
-        let label = "SSH: \(keypath)"
+        let label = "SSH: \(account)"
         
         // no apps are trusted to access the keychain item
         var accessRef: SecAccess?
@@ -68,7 +68,7 @@ class SSHKeychain {
             kSecAttrService: "SSH",
             kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked,
             kSecAttrAccess: accessRef!,
-            kSecAttrAccount: keypath,
+            kSecAttrAccount: account,
             kSecValueData: password
         ]
         
@@ -77,10 +77,10 @@ class SSHKeychain {
         return status
     }
     
-    func delete(keypath: String) -> OSStatus {
+    func delete(account: String) -> OSStatus {
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
-            kSecAttrAccount: keypath
+            kSecAttrAccount: account
         ]
         return SecItemDelete(query as CFDictionary)
     }
