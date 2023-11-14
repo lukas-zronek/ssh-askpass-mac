@@ -31,20 +31,12 @@ class SSHKeychain {
     
     static let shared = SSHKeychain()
     
-    struct DefaultValues {
-        static let itemClass = kSecClassGenericPassword
-        static let LabelPrefix = "SSH: "
-        static let Description = "OpenSSH private key passphrase"
-        static let Service = "SSH"
-        static let Accessible = kSecAttrAccessibleWhenUnlocked
-    }
-    
     private init() {}
     
     func get(keypath: String) -> String? {
         var result: AnyObject?
         let query: [CFString: AnyObject] = [
-            kSecClass: DefaultValues.itemClass,
+            kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: keypath as CFString,
             kSecMatchLimit: kSecMatchLimitOne,
             kSecReturnData: kCFBooleanTrue
@@ -60,7 +52,7 @@ class SSHKeychain {
     func add(keypath: String, password: String) -> OSStatus {
         var status: OSStatus
 
-        let label = "\(DefaultValues.LabelPrefix)\(keypath)"
+        let label = "SSH: \(keypath)"
         
         // no apps are trusted to access the keychain item
         var accessRef: SecAccess?
@@ -70,11 +62,11 @@ class SSHKeychain {
         }
         
         let query: [CFString: Any] = [
-            kSecClass: DefaultValues.itemClass,
+            kSecClass: kSecClassGenericPassword,
             kSecAttrLabel: label,
-            kSecAttrDescription: DefaultValues.Description,
-            kSecAttrService: DefaultValues.Service,
-            kSecAttrAccessible: DefaultValues.Accessible,
+            kSecAttrDescription: "OpenSSH passphrase",
+            kSecAttrService: "SSH",
+            kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked,
             kSecAttrAccess: accessRef!,
             kSecAttrAccount: keypath,
             kSecValueData: password
@@ -87,7 +79,7 @@ class SSHKeychain {
     
     func delete(keypath: String) -> OSStatus {
         let query: [CFString: Any] = [
-            kSecClass: DefaultValues.itemClass,
+            kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: keypath
         ]
         return SecItemDelete(query as CFDictionary)
