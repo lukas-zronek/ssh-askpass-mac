@@ -75,6 +75,15 @@ You can also disable the keychain with the following command:
 ```
 defaults write at.zronek.lukas.ssh-askpass useKeychain -bool false
 ```
+
+## How it works
+
+OpenSSH launches any program that is located in the environment variable SSH_ASKPASS when an input is needed, e.g. passphrase for private key. The program's STDIO is used as input by OpenSSH.
+
+Based on the text that OpenSSH passes as the first argument and the environment variable SSH_ASKPASS_PROMPT, ssh-askpass-mac determines what kind of dialog should be displayed.
+
+To ensure that SSH_ASKPASS is set globally including for built-in ssh-agent, the Launch Agent is required.
+
 ## Security
 
 Passphrases are stored in the macOS login keychain by default. The user can choose to always allow access to the keychain item, which is not recommended. In this case, the app is permanently trusted and given access to the keychain item in the future without asking the user again.
