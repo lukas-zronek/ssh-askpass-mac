@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		80BBEF5A21528CF50075528C /* SSHKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BBEF5921528CF50075528C /* SSHKeychain.swift */; };
-		80BBEF5C2153CC980075528C /* String+ParseKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BBEF5B2153CC980075528C /* String+ParseKeyPath.swift */; };
+		80BBEF5C2153CC980075528C /* String+ParseAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BBEF5B2153CC980075528C /* String+ParseAccount.swift */; };
 		80BBEF60215642E00075528C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BBEF5F215642E00075528C /* main.swift */; };
 		80CD09EC20D2A7410091E6DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CD09EB20D2A7410091E6DC /* AppDelegate.swift */; };
 		80CD09EE20D2A7410091E6DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CD09ED20D2A7410091E6DC /* ViewController.swift */; };
@@ -21,7 +21,7 @@
 
 /* Begin PBXFileReference section */
 		80BBEF5921528CF50075528C /* SSHKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeychain.swift; sourceTree = "<group>"; };
-		80BBEF5B2153CC980075528C /* String+ParseKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ParseKeyPath.swift"; sourceTree = "<group>"; };
+		80BBEF5B2153CC980075528C /* String+ParseAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ParseAccount.swift"; sourceTree = "<group>"; };
 		80BBEF5F215642E00075528C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		80CD09E820D2A7410091E6DC /* ssh-askpass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ssh-askpass.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CD09EB20D2A7410091E6DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 				80CD09F520D2A7410091E6DC /* ssh_askpass.entitlements */,
 				80BBEF5921528CF50075528C /* SSHKeychain.swift */,
 				A159339C276F4F25004B0BEC /* SSHAskpass.swift */,
-				80BBEF5B2153CC980075528C /* String+ParseKeyPath.swift */,
+				80BBEF5B2153CC980075528C /* String+ParseAccount.swift */,
 				80BBEF5F215642E00075528C /* main.swift */,
 				A19F8338294B6C61005B91B3 /* Helper */,
 			);
@@ -166,7 +166,7 @@
 				80BBEF60215642E00075528C /* main.swift in Sources */,
 				80CD09EC20D2A7410091E6DC /* AppDelegate.swift in Sources */,
 				A159339D276F4F25004B0BEC /* SSHAskpass.swift in Sources */,
-				80BBEF5C2153CC980075528C /* String+ParseKeyPath.swift in Sources */,
+				80BBEF5C2153CC980075528C /* String+ParseAccount.swift in Sources */,
 				80BBEF5A21528CF50075528C /* SSHKeychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

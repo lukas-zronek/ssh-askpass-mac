@@ -54,6 +54,11 @@ if !SSHAskpass.shared.account.isEmpty {
                 exit(0)
             }
         }
+    } else if SSHAskpass.shared.type == .password {
+        if let password = SSHKeychain.shared.get(account: SSHAskpass.shared.account) {
+            print(password)
+            exit(0)
+        }
     }
 }
 

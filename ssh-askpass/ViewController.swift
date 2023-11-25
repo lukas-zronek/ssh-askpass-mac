@@ -75,6 +75,11 @@ class ViewController: NSViewController {
                 keychainCheckBox.state = NSControl.StateValue.off
                 keychainCheckBox.isEnabled = false
             }
+        case .password:
+            if sshAskpass.account.isEmpty {
+                keychainCheckBox.state = NSControl.StateValue.off
+                keychainCheckBox.isEnabled = false
+            }
         case .badPassphrase:
             break
         case .inputConfirmation:
@@ -108,7 +113,7 @@ class ViewController: NSViewController {
     }
     
     @IBAction func ok(_ sender: Any) {
-        if (sshAskpass.type == .passphrase || sshAskpass.type == .badPassphrase) && !sshAskpass.account.isEmpty && keychainCheckBox.state == NSControl.StateValue.on {
+        if (sshAskpass.type == .passphrase || sshAskpass.type == .badPassphrase || sshAskpass.type == .password) && !sshAskpass.account.isEmpty && keychainCheckBox.state == NSControl.StateValue.on {
             let status = sshKeychain.add(account: sshAskpass.account, password: passwordTextField.stringValue)
 
             if status == errSecDuplicateItem {

@@ -101,6 +101,14 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "&quot;(user@myserver) Password:&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;user@myserver&apos;s password: &quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "&quot;Bad passphrase, try again for : &quot;"
             isEnabled = "NO">
          </CommandLineArgument>
