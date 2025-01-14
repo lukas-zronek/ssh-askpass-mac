@@ -48,10 +48,29 @@ class ViewController: NSViewController {
         // set first responder to allow closing window with escape key
         switch self.sshAskpass.type {
         case .confirmation, .information:
-            if let window = self.view.window {
-                window.makeFirstResponder(cancelButton)
-            }
+            self.view.window?.makeFirstResponder(cancelButton)
         default: break // passwordTextField is first responder by default
+        }
+    }
+
+    // Handle tab key, even if navigation disabled in settings.
+    override func keyDown(with event: NSEvent) {
+        let switchers: [UInt16] = [48, 123, 124] // tab, left arrow, right arrow
+        guard switchers.contains(event.keyCode) else {
+            super.keyDown(with: event)
+            return
+        }
+
+        if (self.sshAskpass.type == .confirmation) {
+            if self.view.window?.firstResponder === cancelButton {
+                self.view.window?.makeFirstResponder(okButton)
+                cancelButton.keyEquivalent = ""
+                okButton.keyEquivalent = "\r"
+            } else {
+                self.view.window?.makeFirstResponder(cancelButton)
+                okButton.keyEquivalent = ""
+                cancelButton.keyEquivalent = "\r"
+            }
         }
     }
 
