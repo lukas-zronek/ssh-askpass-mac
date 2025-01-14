@@ -37,6 +37,8 @@ class ViewController: NSViewController {
     
     let sshKeychain = SSHKeychain.shared
     let sshAskpass = SSHAskpass.shared
+    var timeout = 0
+    var timer: Timer?
     
 #if swift(>=4.2)
     let cautionName = NSImage.cautionName
@@ -48,11 +50,57 @@ class ViewController: NSViewController {
         // set first responder to allow closing window with escape key
         switch self.sshAskpass.type {
         case .confirmation, .information:
-            if let window = self.view.window {
-                window.makeFirstResponder(cancelButton)
-            }
+            self.view.window?.makeFirstResponder(cancelButton)
         default: break // passwordTextField is first responder by default
         }
+    }
+
+    // Handle tab key, even if navigation disabled in settings.
+    override func keyDown(with event: NSEvent) {
+        let switchers: [UInt16] = [48, 123, 124] // tab, left arrow, right arrow
+        guard switchers.contains(event.keyCode) else {
+            super.keyDown(with: event)
+            return
+        }
+
+        if (self.sshAskpass.type == .confirmation) {
+            if self.timeout > 0 {
+                timer?.invalidate()
+                timer = nil
+                cancelButton.title = "Cancel"
+            }
+            if self.view.window?.firstResponder === cancelButton {
+                self.view.window?.makeFirstResponder(okButton)
+                cancelButton.keyEquivalent = ""
+                okButton.keyEquivalent = "\r"
+            } else {
+                self.view.window?.makeFirstResponder(cancelButton)
+                okButton.keyEquivalent = ""
+                cancelButton.keyEquivalent = "\r"
+            }
+        }
+    }
+
+    func startCountdown() {
+        updateCounter() // Set the initial title
+
+        // Schedule a timer to update the countdown every second
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+
+            self.timeout -= 1
+            if self.timeout <= 0 {
+                self.timer?.invalidate()
+                self.timer = nil
+                self.cancel(self) // Cancel the dialog when timeout reaches zero
+            } else {
+                self.updateCounter()
+            }
+        }
+    }
+
+    func updateCounter() {
+        cancelButton.title = "Cancel (in \(timeout)s)"
     }
 
     override func viewDidLoad() {
@@ -67,9 +115,20 @@ class ViewController: NSViewController {
             if let controlView = keychainCheckBox.controlView {
                 controlView.isHidden = true
             }
-            
+
             okButton.keyEquivalent = "" // reset default behaviour
             cancelButton.keyEquivalent = "\r" // set to return key
+
+            // Start the counter, if asked for
+            if let timeoutString = ProcessInfo.processInfo.environment["SSH_ASKPASS_TIMEOUT"],
+               let timeoutValue = Int(timeoutString) {
+                self.timeout = timeoutValue
+            }
+
+            // Start the countdown if timeout is greater than zero
+            if self.timeout > 0 {
+                startCountdown()
+            }
         case .passphrase:
             if sshAskpass.account.isEmpty {
                 keychainCheckBox.state = NSControl.StateValue.off
@@ -109,6 +168,7 @@ class ViewController: NSViewController {
     }
 
     @IBAction func cancel(_ sender: Any) {
+        timer?.invalidate() // Stop the timer
         exit(1)
     }
     
